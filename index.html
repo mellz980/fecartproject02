@@ -2,25 +2,55 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Teachable Machine - Teste</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+  <title>Reconhecimento IA</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 </head>
 <body>
-  <div>Teachable Machine Image Model</div>
-  <button type="button" onclick="init()">Start</button>
-  <div id="webcam-container"></div>
-  <div id="label-container"></div>
+  <h1>Teste de IA</h1>
+  <button onclick="init()">Iniciar</button>
+  <video id="webcam" autoplay playsinline width="400" height="300"></video>
+  <div id="resultado"></div>
 
-  <script type="text/javascript">
-      // Caminho da pasta onde estão seus arquivos do modelo
-      const URL = "./model/";  // 🔥 Ajuste o nome da pasta conforme seu repositório
+  <script>
+    const URL = "./mymodel/"; // Caminho onde estão seus arquivos
+    let model, webcam, labelContainer, maxPredictions;
 
-      let model, webcam, labelContainer, maxPredictions;
+    async function init() {
+      // Carrega o modelo e os metadados
+      const modelURL = URL + "model.json";
+      const metadataURL = URL + "metadata.json";
+      model = await tmImage.load(modelURL, metadataURL);
+      maxPredictions = model.getTotalClasses();
 
-      // Carregar modelo e configurar webcam
-      async function init() {
-          const modelURL = URL + "model.json";
-          const metadataURL = URL + "metadata.json";
+      // Configura a webcam
+      const flip = true;
+      webcam = new tmImage.Webcam(400, 300, flip);
+      await webcam.setup();
+      await webcam.play();
+      window.requestAnimationFrame(loop);
 
-          mo
+      document.getElementById("webcam").appendChild(webcam.canvas);
+
+      labelContainer = document.getElementById("resultado");
+      for (let i = 0; i < maxPredictions; i++) {
+        labelContainer.appendChild(document.createElement("div"));
+      }
+    }
+
+    async function loop() {
+      webcam.update();
+      await predict();
+      window.requestAnimationFrame(loop);
+    }
+
+    async function predict() {
+      const prediction = await model.predict(webcam.canvas);
+      for (let i = 0; i < maxPredictions; i++) {
+        const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+        labelContainer.childNodes[i].innerHTML = classPrediction;
+      }
+    }
+  </script>
+</body>
+</html>
