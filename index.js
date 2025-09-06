@@ -1,9 +1,6 @@
-// index.js
-
 // Caminho para os arquivos do modelo no GitHub Pages
 const MODEL_URL = "https://mellz980.github.io/fecartprojetct02/";
 
-// Variáveis globais
 let model, webcam, labelContainer, maxPredictions;
 
 document.getElementById("start-btn").addEventListener("click", init);
@@ -17,8 +14,8 @@ async function init() {
     model = await tmImage.load(modelURL, metadataURL);
     maxPredictions = model.getTotalClasses();
 
-    // Configurar a webcam
-    const flip = true; // espelhamento para selfie
+    // Configurar webcam
+    const flip = true;
     webcam = new tmImage.Webcam(400, 300, flip);
     await webcam.setup();
     await webcam.play();
@@ -51,5 +48,4 @@ async function predict() {
     labelContainer.childNodes[i].innerHTML = classPrediction;
   }
 }
-
 
