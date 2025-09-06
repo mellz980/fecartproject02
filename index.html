@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reconhecimento IA - Profissional</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Bibliotecas do Teachable Machine -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.4/dist/teachablemachine-image.min.js"></script>
+
+  <!-- Fonte -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>Reconhecimento IA 🤖</header>
+
+  <section class="hero-section" id="inicio">
+    <div class="hero-text">
+      <h2>Sinta o poder da <span>inteligência artificial</span> 💡</h2>
+      <p>Nosso projeto usa a Teachable Machine para reconhecer imagens em tempo real usando sua webcam.</p>
+      <input type="text" id="username" placeholder="Digite seu nome" />
+      <button class="start-btn" id="start-btn">Começar 🚀</button>
+    </div>
+
+    <div id="ranking" class="hero-ranking">
+      <h3>Ranking</h3>
+      <ol id="ranking-list"></ol>
+    </div>
+  </section>
+
+  <main id="modelo">
+    <div class="webcam-section">
+      <div id="webcam-container"></div>
+    </div>
+
+    <div class="emotion-panel">
+      <div id="current-emotion">😄 ALEGRIA</div>
+      <div id="score-display">Pontuação: 0</div>
+      <div id="feedback"></div>
+    </div>
+  </main>
+
+  <div id="progress-container"><div id="progress-bar"></div></div>
+
+  <div id="final-screen">
+    <canvas id="confetti-canvas"></canvas>
+    <h2>🎉 UAU! Você concluiu! 🎉</h2>
+    <p id="final-score">Pontuação final: 0</p>
+    <p id="final-time"></p>
+
+    <div class="image-carousel" id="final-carousel">
+      <button class="carousel-btn carousel-prev" id="carousel-prev">&#10094;</button>
+      <div class="image-carousel-track" id="final-carousel-track"></div>
+      <button class="carousel-btn carousel-next" id="carousel-next">&#10095;</button>
+    </div>
+
+    <div id="final-gallery" class="gallery"></div>
+
+    <button class="start-btn" id="restart-btn">Refazer Teste 🔁</button>
+  </div>
+
+  <audio id="click-sound"
+         src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_f95c602d48.mp3?filename=click-124467.mp3"
+         preload="auto"></audio>
+
+  <!-- App JS -->
+  <script src="index.js"></script>
+</body>
+</html>

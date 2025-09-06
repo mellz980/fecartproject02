@@ -1,0 +1,167 @@
+/* ================== RESET ================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ================== BODY ================== */
+body {
+  background: #f4f8ff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ================== HEADER ================== */
+header {
+  background: linear-gradient(90deg, #0f62fe, #00bfa6);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* ================== MAIN ================== */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+/* ================== GAME CONTAINER ================== */
+#game-container {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 80%;
+  max-width: 700px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+h1 {
+  font-size: 2em;
+  color: #0f62fe;
+  margin-bottom: 15px;
+}
+
+p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* ================== INPUTS & BUTTONS ================== */
+input {
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  width: 80%;
+  max-width: 300px;
+  font-size: 1em;
+}
+
+button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #ffcc00, #ff8800);
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #ffaa00, #ff6600);
+}
+
+/* ================== RANKING ================== */
+#ranking {
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px solid #0f62fe;
+  border-radius: 10px;
+  background: #f0f8ff;
+  text-align: left;
+}
+
+/* ================== WEBCAM ================== */
+#webcam-container {
+  margin-top: 20px;
+}
+
+canvas {
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* ================== LABELS ================== */
+#label-container {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* ================== FINAL SCREEN (única) ================== */
+#final-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1000;
+  animation: popUp 0.8s ease-out;
+  text-align: center;
+  padding: 20px;
+}
+
+#final-screen h2 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+#final-screen p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+#final-screen button {
+  background: linear-gradient(90deg, #ff6a00, #ee0979);
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-size: 1em;
+  cursor: pointer;
+  border: none;
+  color: white;
+  transition: 0.3s;
+}
+
+#final-screen button:hover {
+  transform: scale(1.1);
+}
+
+/* ================== ANIMAÇÕES ================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popUp {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
