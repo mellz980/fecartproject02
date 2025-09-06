@@ -1,5 +1,5 @@
 // Caminho para os arquivos do modelo no GitHub Pages
-const MODEL_URL = "https://mellz980.github.io/fecartprojetct02/";
+const MODEL_URL = "https://mellz980.github.io/fecartprojetct02/mode/";
 
 let model, webcam, labelContainer, maxPredictions;
 
@@ -48,4 +48,5 @@ async function predict() {
     labelContainer.childNodes[i].innerHTML = classPrediction;
   }
 }
+
 
