@@ -1,7 +1,7 @@
 // index.js
 
 // Caminho para os arquivos do modelo no GitHub Pages
-const MODEL_URL = "https://SEU_USUARIO.github.io/fecartprojetct02/";
+const MODEL_URL = "https://mellz980.github.io/fecartprojetct02/";
 
 // Variáveis globais
 let model, webcam, labelContainer, maxPredictions;
@@ -51,4 +51,5 @@ async function predict() {
     labelContainer.childNodes[i].innerHTML = classPrediction;
   }
 }
+
 
