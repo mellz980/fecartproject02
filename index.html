@@ -13,23 +13,47 @@
   <div id="resultado"></div>
 
   <script>
-    const URL = "./https://mellz980.github.io/fecartproject02/"; // Caminho onde estão seus arquivos
+    // Caminho HTTPS para o GitHub Pages
+    const URL = "https://mellz980.github.io/fecartprojetct02/";
     let model, webcam, labelContainer, maxPredictions;
 
     async function init() {
-      const modelURL = URL + "model.json";
-      const metadataURL = URL + "metadata.json";
-      model = await tmImage.load(modelURL, metadataURL);
-      maxPredictions = model.getTotalClasses();
+      try {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
 
-      const flip = true;
-      webcam = new tmImage.Webcam(400, 300, flip);
-      await webcam.setup();
-      await webcam.play();
+        const flip = true;
+        webcam = new tmImage.Webcam(400, 300, flip);
+        await webcam.setup();
+        await webcam.play();
+        window.requestAnimationFrame(loop);
+
+        document.getElementById("webcam-container").appendChild(webcam.canvas);
+
+        labelContainer = document.getElementById("resultado");
+        for (let i = 0; i < maxPredictions; i++) {
+          labelContainer.appendChild(document.createElement("div"));
+        }
+      } catch (err) {
+        alert("Erro ao carregar o modelo: " + err);
+      }
+    }
+
+    async function loop() {
+      webcam.update();
+      await predict();
       window.requestAnimationFrame(loop);
+    }
 
-      document.getElementById("webcam-container").appendChild(webcam.canvas);
-
-      labelContainer = document.getElementById("resultado");
+    async function predict() {
+      const prediction = await model.predict(webcam.canvas);
       for (let i = 0; i < maxPredictions; i++) {
-        labelConta
+        const classPrediction = prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+        labelContainer.childNodes[i].innerHTML = classPrediction;
+      }
+    }
+  </script>
+</body>
+</html>
